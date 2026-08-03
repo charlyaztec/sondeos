@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+
+<html lang="es-MX">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width,initial-scale=1" name="viewport"/>
+<meta content="Simulacro no oficial del Examen de Control UNAM 2026, Área 3, con 120 reactivos y evaluación automática." name="description"/>
+<title>Simulacro de Examen de Control UNAM 2026 — Área 3</title>
+<style>
+:root{--bg:#eef2f7;--card:#fff;--ink:#172033;--muted:#5f6f85;--line:#d7e0ea;--blue:#003b7a;--blue2:#075ca8;--gold:#c9a227;--ok:#176b3a;--bad:#a61b1b;--softok:#edf9f1;--softbad:#fff0f0}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--ink);font-family:Arial,Helvetica,sans-serif;line-height:1.45}
+header{background:linear-gradient(135deg,var(--blue),#071f42);color:#fff;padding:34px 18px;border-bottom:5px solid var(--gold)}
+.header-inner{max-width:980px;margin:auto}h1{font-size:clamp(25px,4vw,42px);margin:0 0 8px;line-height:1.1}header p{margin:5px 0;color:#e8eef7}main{max-width:980px;margin:24px auto 60px;padding:0 16px}
+.notice,.panel,.question-card{background:var(--card);border:1px solid var(--line);border-radius:12px;box-shadow:0 4px 16px rgba(26,45,70,.07)}
+.notice{padding:18px 20px;margin-bottom:20px}.notice p{margin:4px 0}.progress-wrap{position:sticky;top:0;z-index:20;background:rgba(238,242,247,.96);backdrop-filter:blur(6px);padding:10px 0 12px}
+.progress-info{display:flex;justify-content:space-between;font-size:14px;color:var(--muted);margin-bottom:7px}.progress{height:10px;background:#dfe7f0;border-radius:99px;overflow:hidden}.progress>div{height:100%;width:0;background:linear-gradient(90deg,var(--blue2),var(--gold));transition:width .2s}
+.subject-title{margin:28px 0 12px;padding:10px 14px;background:var(--blue);color:#fff;border-left:6px solid var(--gold);border-radius:7px;font-size:20px}
+.question-card{padding:20px;margin:0 0 14px}.q-title{font-weight:700;margin:0 0 14px}.option{display:flex;gap:10px;align-items:flex-start;padding:10px 12px;border:1px solid var(--line);border-radius:8px;margin:8px 0;cursor:pointer;transition:.15s;background:#fff}.option:hover{border-color:var(--blue2);background:#f5f9fe}.option input{margin-top:3px;transform:scale(1.15)}
+.email-panel{margin-top:30px;padding:24px}label.email-label{display:block;font-weight:700;margin:0 0 8px}input[type=email]{width:100%;padding:13px 14px;border:1px solid #aebdce;border-radius:8px;font-size:16px}.privacy{font-size:13px;color:var(--muted);margin:8px 0 18px}
+button{border:0;border-radius:8px;padding:13px 20px;font-size:16px;font-weight:700;cursor:pointer}.primary{background:var(--blue2);color:#fff;width:100%}.primary:hover{background:var(--blue)}.primary:disabled{opacity:.6;cursor:wait}.secondary{background:#e6edf5;color:var(--blue);margin-top:16px}
+.error-box{display:none;background:#fff4e5;border:1px solid #f1b866;color:#743c00;padding:12px 14px;border-radius:8px;margin:14px 0}.status{min-height:22px;margin-top:12px;text-align:center;color:var(--muted);font-size:14px}
+#resultView{display:none}.result-hero{padding:28px;text-align:center}.score{font-size:54px;font-weight:800;color:var(--blue);line-height:1}.metrics{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:24px 0}.metric{padding:18px;background:#f5f8fc;border:1px solid var(--line);border-radius:10px}.metric strong{display:block;font-size:27px;color:var(--blue)}
+.result-row{padding:16px 18px;margin:10px 0;border-radius:10px;border:1px solid var(--line);background:#fff}.result-row.ok{border-left:6px solid var(--ok);background:var(--softok)}.result-row.bad{border-left:6px solid var(--bad);background:var(--softbad)}.result-row p{margin:5px 0}.tag{font-weight:700}.ok .tag{color:var(--ok)}.bad .tag{color:var(--bad)}
+footer{text-align:center;color:var(--muted);padding:20px;font-size:13px}.hidden{display:none!important}
+@media(max-width:650px){.metrics{grid-template-columns:1fr}.question-card{padding:16px}header{padding-top:25px}}
+@media print{header,.progress-wrap,.secondary,footer{display:none!important}body{background:#fff}main{max-width:none;margin:0}.result-row,.panel{box-shadow:none;break-inside:avoid}}
+</style>
+</head>
+<body>
+<header><div class="header-inner">
+<h1>Simulacro de Examen de Control UNAM 2026</h1>
+<p>Área 3: Ciencias sociales · 120 reactivos · Nivel alto</p>
+<p>Material no oficial de preparación académica.</p>
+</div></header>
+<main>
+<section id="examView">
+<div class="notice">
+<p><strong>Instrucciones:</strong> responde los 120 reactivos. Sólo se permite una opción por pregunta.</p>
+<p>Al final deberás ingresar un correo electrónico. Las respuestas correctas, los errores y el porcentaje se mostrarán únicamente en la segunda hoja, después de enviar el examen.</p>
+<p>Tiempo sugerido: 3 horas.</p>
+</div>
+<div class="progress-wrap"><div class="progress-info"><span id="progressText">0 de 120 respondidas</span><span id="progressPct">0%</span></div><div class="progress"><div id="progressBar"></div></div></div>
+<form id="examForm" novalidate=""><div id="questions"></div>
+<div class="panel email-panel">
+<label class="email-label" for="email">Correo electrónico del participante</label>
+<input autocomplete="email" id="email" name="email" placeholder="nombre@correo.com" required="" type="email"/>
+<p class="privacy">El correo y el resultado serán enviados al responsable del formulario mediante FormSubmit.</p>
+<div class="error-box" id="errorBox" role="alert"></div>
+<button class="primary" id="submitBtn" type="submit">Enviar examen y mostrar resultados</button>
+<div aria-live="polite" class="status" id="submitStatus"></div>
+</div></form>
+</section>
+<section id="resultView">
+<div class="panel result-hero">
+<p>Resultado del simulacro</p><div class="score" id="scorePct">0%</div>
+<div class="metrics"><div class="metric"><strong id="hits">0</strong>Aciertos</div><div class="metric"><strong id="misses">0</strong>Errores</div><div class="metric"><strong>120</strong>Reactivos</div></div>
+<p id="deliveryStatus"></p><button class="secondary" onclick="window.print()">Imprimir resultados</button>
+</div>
+<h2>Revisión por reactivo</h2><div id="resultDetail"></div>
+</section>
+</main>
+<footer>Simulacro no oficial. No representa una publicación ni una evaluación institucional de la UNAM.</footer>
+<script src="questions.js"></script><script>
+const QUESTIONS=window.QUESTIONS;
+const FORM_ENDPOINT='https://formsubmit.co/ajax/charly.aztec@gmail.com';
+const letters=['A','B','C','D'];
+const qContainer=document.getElementById('questions');
+let currentSubject='';
+QUESTIONS.forEach(q=>{
+ if(q.subject!==currentSubject){currentSubject=q.subject;const h=document.createElement('h2');h.className='subject-title';h.textContent=currentSubject;qContainer.appendChild(h)}
+ const card=document.createElement('fieldset');card.className='question-card';card.id='question-'+q.n;
+ const legend=document.createElement('legend');legend.className='q-title';legend.textContent=q.n+'. '+q.question;card.appendChild(legend);
+ letters.forEach(letter=>{const lab=document.createElement('label');lab.className='option';const input=document.createElement('input');input.type='radio';input.name='q'+q.n;input.value=letter;input.setAttribute('aria-label',letter+') '+q.options[letter]);const span=document.createElement('span');span.textContent=letter+') '+q.options[letter];lab.append(input,span);card.appendChild(lab)});
+ qContainer.appendChild(card)
+});
+function selectedCount(){let n=0;QUESTIONS.forEach(q=>{if(document.querySelector('input[name="q'+q.n+'"]:checked'))n++});return n}
+function updateProgress(){const n=selectedCount(),pct=Math.round(n/120*100);document.getElementById('progressText').textContent=n+' de 120 respondidas';document.getElementById('progressPct').textContent=pct+'%';document.getElementById('progressBar').style.width=pct+'%'}
+document.getElementById('examForm').addEventListener('change',updateProgress);
+function validEmail(value){return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value)}
+function getResponses(){const r={};QUESTIONS.forEach(q=>{const el=document.querySelector('input[name="q'+q.n+'"]:checked');r[q.n]=el?el.value:''});return r}
+function calculate(responses){let hits=0;const detail=[];QUESTIONS.forEach(q=>{const selected=responses[q.n];const ok=selected===q.answer;if(ok)hits++;detail.push({...q,selected,ok})});return {hits,misses:120-hits,pct:Math.round(hits/120*100),detail}}
+function responseSummary(responses){return QUESTIONS.map(q=>q.n+':'+responses[q.n]).join(' | ')}
+function wrongSummary(result){return result.detail.filter(x=>!x.ok).map(x=>x.n+' (marcó '+x.selected+', correcta '+x.answer+')').join('; ')||'Ninguno'}
+function showResults(result,email,delivered){
+ document.getElementById('examView').style.display='none';document.getElementById('resultView').style.display='block';
+ document.getElementById('scorePct').textContent=result.pct+'%';document.getElementById('hits').textContent=result.hits;document.getElementById('misses').textContent=result.misses;
+ document.getElementById('deliveryStatus').textContent=delivered?'Resultado enviado mediante FormSubmit para '+email+'.':'El resultado fue calculado, pero no se pudo confirmar el envío por FormSubmit.';
+ const box=document.getElementById('resultDetail');box.innerHTML='';
+ result.detail.forEach(x=>{const row=document.createElement('article');row.className='result-row '+(x.ok?'ok':'bad');const title=document.createElement('p');title.className='tag';title.textContent='Reactivo '+x.n+': '+(x.ok?'Correcto':'Incorrecto');const stem=document.createElement('p');stem.textContent=x.question;const yours=document.createElement('p');yours.textContent='Tu respuesta: '+x.selected+') '+x.options[x.selected];const correct=document.createElement('p');correct.textContent='Respuesta correcta: '+x.answer+') '+x.options[x.answer];row.append(title,stem,yours);if(!x.ok)row.append(correct);box.appendChild(row)});
+ window.scrollTo({top:0,behavior:'smooth'});location.hash='resultados'
+}
+document.getElementById('examForm').addEventListener('submit',async e=>{
+ e.preventDefault();const errorBox=document.getElementById('errorBox');errorBox.style.display='none';const responses=getResponses();const unanswered=QUESTIONS.filter(q=>!responses[q.n]);const email=document.getElementById('email').value.trim();
+ if(unanswered.length){errorBox.textContent='Faltan '+unanswered.length+' reactivos por responder. El primero pendiente es el '+unanswered[0].n+'.';errorBox.style.display='block';document.getElementById('question-'+unanswered[0].n).scrollIntoView({behavior:'smooth',block:'center'});return}
+ if(!validEmail(email)){errorBox.textContent='Ingresa un correo electrónico válido para continuar.';errorBox.style.display='block';document.getElementById('email').focus();return}
+ const result=calculate(responses),btn=document.getElementById('submitBtn'),status=document.getElementById('submitStatus');btn.disabled=true;status.textContent='Enviando respuestas y calculando resultado…';
+ const payload={'_subject':'Resultado — Simulacro de Examen de Control UNAM 2026 Área 3','Correo del participante':email,'Área':'Área 3: Ciencias sociales','Aciertos':result.hits,'Errores':result.misses,'Porcentaje':result.pct+'%','Respuestas':responseSummary(responses),'Reactivos incorrectos':wrongSummary(result),'Fecha y hora':new Date().toLocaleString('es-MX'),'_captcha':'false'};
+ let delivered=false;
+ try{const controller=new AbortController();const timer=setTimeout(()=>controller.abort(),15000);const resp=await fetch(FORM_ENDPOINT,{method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},body:JSON.stringify(payload),signal:controller.signal});clearTimeout(timer);delivered=resp.ok}catch(err){delivered=false}
+ showResults(result,email,delivered)
+});
+updateProgress();
+</script>
+</body></html>
