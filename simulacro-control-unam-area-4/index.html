@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="es-MX">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="Simulacro no oficial del Examen de Control UNAM 2026, Área 4, con 120 reactivos y evaluación automática.">
+<title>Simulacro de Examen de Control UNAM 2026 — Área 4</title>
+<style>
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:#eef2f7;color:#172033;font:16px Arial,sans-serif;line-height:1.45}header{background:#003b7a;color:#fff;padding:28px 18px;border-bottom:5px solid #c9a227}header div,main{max-width:960px;margin:auto}h1{margin:0 0 8px}.note,.q,.end,.result{background:#fff;border:1px solid #d7e0ea;border-radius:10px;padding:18px;margin:16px 0;box-shadow:0 4px 14px rgba(22,44,72,.06)}.barbox{position:sticky;top:0;background:rgba(238,242,247,.97);padding:10px 0;z-index:2}.bar{height:10px;background:#dce5ef;border-radius:20px;overflow:hidden}.bar i{display:block;height:100%;width:0;background:linear-gradient(90deg,#075ca8,#c9a227)}.subject{background:#003b7a;color:#fff;padding:9px 12px;border-left:6px solid #c9a227;border-radius:6px;margin-top:26px}.op{display:block;border:1px solid #d7e0ea;border-radius:7px;padding:9px;margin:7px 0;cursor:pointer}.op:hover{background:#f4f8fc;border-color:#075ca8}.op input{margin-right:7px}input[type=email]{width:100%;padding:12px;font-size:16px;border:1px solid #aebdce;border-radius:7px}button{width:100%;padding:13px;background:#075ca8;color:#fff;border:0;border-radius:7px;font-weight:bold;font-size:16px;cursor:pointer}button:disabled{opacity:.6;cursor:wait}.error{display:none;background:#fff4e5;color:#743c00;padding:11px;margin:12px 0;border:1px solid #efbd73;border-radius:7px}.muted{color:#607087}.score{font-size:52px;font-weight:bold;color:#003b7a}.metrics{display:flex;gap:12px}.metrics div{flex:1;background:#f5f8fc;padding:14px;border-radius:8px}.review{border-left:6px solid #176b3a}.review.bad{border-left-color:#a61b1b;background:#fff2f2}@media(max-width:600px){.metrics{display:block}.metrics div{margin:8px 0}.q{padding:15px}}
+</style>
+</head>
+<body>
+<header><div><h1>Simulacro de Examen de Control UNAM 2026</h1><p>Área 4: Humanidades y artes · 120 reactivos · Nivel alto</p><p>Material no oficial de preparación académica.</p></div></header>
+<main>
+<section id="exam">
+<div class="note"><b>Instrucciones:</b> responde los 120 reactivos. Sólo se permite una opción por pregunta. Al final ingresa tu correo electrónico. Las respuestas correctas, los errores y el porcentaje aparecerán únicamente en la segunda hoja, después de enviar el examen.<p class="muted">Tiempo sugerido: 3 horas.</p></div>
+<div class="barbox"><span id="prog">0 de 120 respondidas</span><div class="bar"><i id="fill"></i></div></div>
+<form id="form"><div id="qs"></div>
+<div class="end">
+<label for="email"><b>Correo electrónico</b></label><input id="email" type="email" required placeholder="nombre@dominio.com" autocomplete="email">
+<p class="muted">El correo y el resultado se enviarán mediante FormSubmit.</p>
+<input id="honey" style="position:absolute;left:-9999px" tabindex="-1" autocomplete="off">
+<div id="err" class="error"></div><button id="send">Enviar examen y ver resultados</button><p id="status" class="muted"></p>
+</div></form></section>
+<section id="results" style="display:none">
+<div class="result"><h2>Resultado</h2><div class="score" id="pct"></div><div class="metrics"><div><b id="good"></b><br>Aciertos</div><div><b id="bad"></b><br>Errores</div><div><b>120</b><br>Reactivos</div></div><p id="mail"></p><p id="delivery"></p></div>
+<h2>Desempeño por materia</h2><div id="subjects"></div><h2>Revisión de respuestas</h2><div id="details"></div>
+</section>
+</main>
+<script src="q1.js"></script><script src="q2.js"></script><script src="q3.js"></script><script src="q4.js"></script><script src="q5.js"></script><script src="q6.js"></script><script src="q7.js"></script><script src="q8.js"></script><script src="q9.js"></script><script src="q10.js"></script>
+<script>
+const L=["A","B","C","D"],f=document.getElementById("form"),box=document.getElementById("qs");
+const esc=s=>String(s).replace(/[&<>"']/g,x=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[x]));
+let subj="";
+if(!window.QUESTIONS||QUESTIONS.length!==120){box.innerHTML="<p>No se cargaron los 120 reactivos.</p>";document.getElementById("send").disabled=true}else{
+QUESTIONS.forEach(q=>{if(q.subject!==subj){subj=q.subject;box.insertAdjacentHTML("beforeend",`<h2 class="subject">${esc(subj)}</h2>`)}
+box.insertAdjacentHTML("beforeend",`<article class="q" id="q${q.n}"><b>${q.n}. ${esc(q.question)}</b>${L.map(l=>`<label class="op"><input type="radio" name="q${q.n}" value="${l}"> <b>${l})</b> ${esc(q.options[l])}</label>`).join("")}</article>`)});}
+function progress(){let n=f.querySelectorAll('input[type=radio]:checked').length;document.getElementById("prog").textContent=`${n} de 120 respondidas`;document.getElementById("fill").style.width=(n/1.2)+"%"}f.onchange=progress;
+f.onsubmit=async e=>{e.preventDefault();let missing=QUESTIONS.filter(q=>!f.querySelector(`[name=q${q.n}]:checked`));let email=document.getElementById("email"),err=document.getElementById("err");
+if(missing.length){err.style.display="block";err.textContent=`Faltan ${missing.length} reactivos. Primer pendiente: ${missing[0].n}`;document.getElementById("q"+missing[0].n).scrollIntoView();return}
+if(!email.checkValidity()){err.style.display="block";err.textContent="Ingresa un correo válido.";email.focus();return}if(document.getElementById("honey").value)return;err.style.display="none";
+let good=0,by={},rows=[],responses=[];QUESTIONS.forEach(q=>{let s=f.querySelector(`[name=q${q.n}]:checked`).value,ok=s===q.answer;if(ok)good++;(by[q.subject]??={g:0,t:0}).t++;if(ok)by[q.subject].g++;rows.push({q,s,ok});responses.push(`${q.n}:${s}`)});
+let data={correct:good,wrong:120-good,pct:Math.round(good/120*10000)/100};document.getElementById("send").disabled=true;document.getElementById("status").textContent="Enviando resultado…";
+let wrong=rows.filter(x=>!x.ok).map(x=>`${x.q.n}: ${x.s}/${x.q.answer}`).join(" | ")||"Ninguna",delivered=false;
+try{let r=await fetch("https://formsubmit.co/ajax/charly.aztec@gmail.com",{method:"POST",headers:{"Content-Type":"application/json","Accept":"application/json"},body:JSON.stringify({"_subject":"Resultado — Simulacro UNAM 2026 Área 4","_template":"table","_captcha":"false","Correo":email.value,"Aciertos":data.correct,"Errores":data.wrong,"Porcentaje":data.pct.toFixed(2)+"%","Por materia":Object.entries(by).map(([s,v])=>`${s}: ${v.g}/${v.t}`).join(" | "),"Respuestas":responses.join(", "),"Incorrectas":wrong,"Fecha":new Date().toLocaleString("es-MX",{timeZone:"America/Mexico_City"})})});delivered=r.ok}catch(x){}
+document.getElementById("exam").style.display="none";document.getElementById("results").style.display="block";document.getElementById("pct").textContent=data.pct.toFixed(2)+"%";document.getElementById("good").textContent=data.correct;document.getElementById("bad").textContent=data.wrong;document.getElementById("mail").textContent="Correo registrado: "+email.value;document.getElementById("delivery").textContent=delivered?"Resultado enviado mediante FormSubmit.":"Resultado calculado; no fue posible confirmar el envío.";
+document.getElementById("subjects").innerHTML=Object.entries(by).map(([s,v])=>`<div class="result"><b>${esc(s)}</b>: ${v.g}/${v.t} (${Math.round(v.g/v.t*100)}%)</div>`).join("");
+document.getElementById("details").innerHTML=rows.map(({q,s,ok})=>`<article class="result review ${ok?"":"bad"}"><b>${ok?"Correcta":"Incorrecta"} · ${q.n}. ${esc(q.question)}</b><p>Tu respuesta: ${s}) ${esc(q.options[s])}</p>${ok?"":`<p>Correcta: ${q.answer}) ${esc(q.options[q.answer])}</p>`}<p>${esc(q.explanation)}</p></article>`).join("");scrollTo(0,0)}
+</script>
+</body></html>
