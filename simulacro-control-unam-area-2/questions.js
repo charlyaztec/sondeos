@@ -1,10 +1,2 @@
 window.QUESTIONS=[];
-document.write('<script src="q1.js"><\\/script>');
-document.write('<script src="q2.js"><\\/script>');
-document.write('<script src="q3.js"><\\/script>');
-document.write('<script src="q4.js"><\\/script>');
-document.write('<script src="q5.js"><\\/script>');
-document.write('<script src="q6.js"><\\/script>');
-document.write('<script src="q7.js"><\\/script>');
-document.write('<script src="q8.js"><\\/script>');
-document.write('<script src="q9.js"><\\/script>');
+for(let i=1;i<=9;i++)document.write('<script src="q'+i+'.js"></'+'script>');
