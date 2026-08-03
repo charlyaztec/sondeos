@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Formulario de contacto</title>
+  <style>
+    * { box-sizing: border-box; }
+    body { margin:0; min-height:100vh; display:grid; place-items:center; font-family:Arial,Helvetica,sans-serif; background:#f4f6f8; color:#1f2937; padding:20px; }
+    .card { width:100%; max-width:420px; background:#fff; border-radius:16px; padding:28px; box-shadow:0 12px 35px rgba(0,0,0,.10); }
+    h1 { margin:0 0 8px; font-size:26px; }
+    p { margin:0 0 22px; color:#6b7280; }
+    label { display:block; margin:14px 0 6px; font-weight:600; }
+    input { width:100%; padding:13px 14px; border:1px solid #cbd5e1; border-radius:10px; font-size:16px; }
+    input:focus { outline:2px solid #2563eb; border-color:transparent; }
+    button { width:100%; margin-top:20px; padding:14px; border:0; border-radius:10px; font-size:16px; font-weight:700; cursor:pointer; background:#111827; color:#fff; }
+    button:hover { opacity:.92; }
+    .note { margin-top:15px; font-size:12px; color:#94a3b8; text-align:center; }
+  </style>
+</head>
+<body>
+  <main class="card">
+    <h1>Registro</h1>
+    <p>Ingresa tus datos y presiona enviar.</p>
+    <form action="https://formsubmit.co/charlyaztec@gmail.com" method="POST">
+      <input type="hidden" name="_subject" value="Nuevo registro desde formulario" />
+      <input type="hidden" name="_template" value="table" />
+      <input type="hidden" name="_captcha" value="false" />
+      <label for="nombre">Nombre</label>
+      <input id="nombre" name="Nombre" type="text" required autocomplete="name" />
+      <label for="correo">Correo</label>
+      <input id="correo" name="Correo" type="email" required autocomplete="email" />
+      <button type="submit">Enviar</button>
+    </form>
+    <div class="note">La información será enviada por correo electrónico.</div>
+  </main>
+</body>
+</html>
