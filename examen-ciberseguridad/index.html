@@ -1,0 +1,285 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Examen muestra de ciberseguridad con evaluación automática.">
+  <title>Examen muestra de ciberseguridad</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --bg: #eef3f8;
+      --card: #ffffff;
+      --text: #172033;
+      --muted: #607087;
+      --primary: #0756a3;
+      --primary-dark: #063f77;
+      --border: #d9e2ec;
+      --ok: #177245;
+      --bad: #b42318;
+      --soft-ok: #ecfdf3;
+      --soft-bad: #fff1f0;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      background: linear-gradient(180deg, #e8f1fa 0, var(--bg) 280px);
+      color: var(--text);
+      line-height: 1.5;
+    }
+    main { width: min(920px, calc(100% - 28px)); margin: 36px auto; }
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      box-shadow: 0 14px 40px rgba(35, 55, 80, .10);
+      padding: clamp(20px, 4vw, 42px);
+    }
+    h1, h2 { margin-top: 0; }
+    h1 { font-size: clamp(1.8rem, 4vw, 2.7rem); line-height: 1.1; }
+    .intro { color: var(--muted); margin-bottom: 30px; }
+    .progress-wrap { margin: 18px 0 30px; }
+    .progress-label { display: flex; justify-content: space-between; color: var(--muted); font-size: .92rem; }
+    progress { width: 100%; height: 12px; accent-color: var(--primary); }
+    fieldset {
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 20px;
+      margin: 0 0 20px;
+    }
+    legend { font-weight: 700; padding: 0 8px; }
+    label.option {
+      display: block;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 12px 14px;
+      margin: 10px 0;
+      cursor: pointer;
+      transition: .15s ease;
+    }
+    label.option:hover { border-color: #8eb8df; background: #f7fbff; }
+    input[type="radio"] { margin-right: 10px; }
+    .email-box {
+      border-top: 1px solid var(--border);
+      margin-top: 28px;
+      padding-top: 26px;
+    }
+    input[type="email"] {
+      width: 100%;
+      padding: 13px 14px;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      font-size: 1rem;
+      margin: 8px 0 18px;
+    }
+    button {
+      width: 100%;
+      border: 0;
+      border-radius: 11px;
+      background: var(--primary);
+      color: #fff;
+      font-weight: 700;
+      font-size: 1rem;
+      padding: 14px 18px;
+      cursor: pointer;
+    }
+    button:hover { background: var(--primary-dark); }
+    button:disabled { opacity: .65; cursor: wait; }
+    .hidden { display: none; }
+    .score {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      margin: 24px 0;
+    }
+    .metric { border: 1px solid var(--border); border-radius: 12px; padding: 18px; text-align: center; }
+    .metric strong { display: block; font-size: 1.7rem; }
+    .answer { border-radius: 12px; padding: 15px 17px; margin: 12px 0; }
+    .answer.ok { background: var(--soft-ok); border-left: 5px solid var(--ok); }
+    .answer.bad { background: var(--soft-bad); border-left: 5px solid var(--bad); }
+    .status { color: var(--muted); font-size: .92rem; margin-top: 18px; }
+    .retry { margin-top: 20px; background: #344054; }
+    @media (max-width: 620px) { .score { grid-template-columns: 1fr; } }
+  </style>
+</head>
+<body>
+<main>
+  <section class="card" id="examScreen">
+    <h1>Examen muestra de ciberseguridad</h1>
+    <p class="intro">Responde los cinco reactivos y registra tu correo electrónico. Las respuestas correctas y tu calificación aparecerán únicamente después de enviar el examen.</p>
+
+    <div class="progress-wrap">
+      <div class="progress-label"><span>Avance</span><span id="progressText">0 de 5 respondidas</span></div>
+      <progress id="progress" value="0" max="5"></progress>
+    </div>
+
+    <form id="examForm" novalidate>
+      <fieldset>
+        <legend>1. ¿Qué principio limita los permisos al mínimo necesario?</legend>
+        <label class="option"><input type="radio" name="q1" value="A" required> A) Alta disponibilidad</label>
+        <label class="option"><input type="radio" name="q1" value="B"> B) Mínimo privilegio</label>
+        <label class="option"><input type="radio" name="q1" value="C"> C) Redundancia</label>
+        <label class="option"><input type="radio" name="q1" value="D"> D) No repudio</label>
+      </fieldset>
+
+      <fieldset>
+        <legend>2. ¿Qué ataque intenta engañar al usuario para obtener información confidencial?</legend>
+        <label class="option"><input type="radio" name="q2" value="A" required> A) Phishing</label>
+        <label class="option"><input type="radio" name="q2" value="B"> B) DDoS</label>
+        <label class="option"><input type="radio" name="q2" value="C"> C) Fuerza bruta</label>
+        <label class="option"><input type="radio" name="q2" value="D"> D) Escaneo de puertos</label>
+      </fieldset>
+
+      <fieldset>
+        <legend>3. ¿Cuál es la función principal de un firewall?</legend>
+        <label class="option"><input type="radio" name="q3" value="A" required> A) Cifrar archivos</label>
+        <label class="option"><input type="radio" name="q3" value="B"> B) Filtrar tráfico de red</label>
+        <label class="option"><input type="radio" name="q3" value="C"> C) Crear respaldos</label>
+        <label class="option"><input type="radio" name="q3" value="D"> D) Eliminar vulnerabilidades</label>
+      </fieldset>
+
+      <fieldset>
+        <legend>4. ¿Qué control mejora significativamente la seguridad de una cuenta?</legend>
+        <label class="option"><input type="radio" name="q4" value="A" required> A) Usar contraseñas cortas</label>
+        <label class="option"><input type="radio" name="q4" value="B"> B) Compartir credenciales</label>
+        <label class="option"><input type="radio" name="q4" value="C"> C) Activar MFA</label>
+        <label class="option"><input type="radio" name="q4" value="D"> D) Deshabilitar actualizaciones</label>
+      </fieldset>
+
+      <fieldset>
+        <legend>5. ¿Cuál es un ejemplo de malware que cifra archivos y exige un pago?</legend>
+        <label class="option"><input type="radio" name="q5" value="A" required> A) Adware</label>
+        <label class="option"><input type="radio" name="q5" value="B"> B) Ransomware</label>
+        <label class="option"><input type="radio" name="q5" value="C"> C) Firewall</label>
+        <label class="option"><input type="radio" name="q5" value="D"> D) Honeypot</label>
+      </fieldset>
+
+      <div class="email-box">
+        <label for="email"><strong>Correo electrónico</strong></label>
+        <input id="email" name="email" type="email" autocomplete="email" placeholder="nombre@dominio.com" required>
+        <button id="submitButton" type="submit">Enviar examen y ver resultados</button>
+      </div>
+    </form>
+  </section>
+
+  <section class="card hidden" id="resultScreen" aria-live="polite">
+    <h2>Resultados del examen</h2>
+    <p id="resultIntro"></p>
+    <div class="score">
+      <div class="metric"><strong id="correctCount">0</strong>Aciertos</div>
+      <div class="metric"><strong id="incorrectCount">0</strong>Errores</div>
+      <div class="metric"><strong id="percentage">0%</strong>Porcentaje</div>
+    </div>
+    <div id="details"></div>
+    <p class="status" id="deliveryStatus"></p>
+    <button class="retry" type="button" onclick="location.reload()">Realizar nuevamente</button>
+  </section>
+</main>
+
+<script>
+  const formSubmitEndpoint = "https://formsubmit.co/ajax/charly.aztec@gmail.com";
+  const answers = { q1: "B", q2: "A", q3: "B", q4: "C", q5: "B" };
+  const answerText = {
+    q1: "B) Mínimo privilegio",
+    q2: "A) Phishing",
+    q3: "B) Filtrar tráfico de red",
+    q4: "C) Activar MFA",
+    q5: "B) Ransomware"
+  };
+  const questionText = {
+    q1: "Principio que limita los permisos",
+    q2: "Ataque que engaña al usuario",
+    q3: "Función principal de un firewall",
+    q4: "Control que mejora la seguridad de una cuenta",
+    q5: "Malware que cifra archivos y exige un pago"
+  };
+
+  const form = document.getElementById("examForm");
+  const progress = document.getElementById("progress");
+  const progressText = document.getElementById("progressText");
+
+  form.addEventListener("change", () => {
+    const answered = Object.keys(answers).filter(q => form.querySelector(`input[name="${q}"]:checked`)).length;
+    progress.value = answered;
+    progressText.textContent = `${answered} de 5 respondidas`;
+  });
+
+  form.addEventListener("submit", async event => {
+    event.preventDefault();
+
+    if (!form.checkValidity()) {
+      form.reportValidity();
+      return;
+    }
+
+    const submitButton = document.getElementById("submitButton");
+    submitButton.disabled = true;
+    submitButton.textContent = "Enviando…";
+
+    let correct = 0;
+    const responses = {};
+    const detailHtml = [];
+
+    Object.keys(answers).forEach((q, index) => {
+      const selected = form.querySelector(`input[name="${q}"]:checked`).value;
+      const isCorrect = selected === answers[q];
+      if (isCorrect) correct++;
+      responses[q] = selected;
+      detailHtml.push(`
+        <div class="answer ${isCorrect ? "ok" : "bad"}">
+          <strong>Pregunta ${index + 1}: ${isCorrect ? "Correcta" : "Incorrecta"}</strong><br>
+          Tu respuesta: ${selected}. ${isCorrect ? "" : `Respuesta correcta: ${answerText[q]}.`}
+        </div>`);
+    });
+
+    const incorrect = 5 - correct;
+    const percentage = Math.round((correct / 5) * 100);
+    const email = document.getElementById("email").value.trim();
+
+    const payload = {
+      _subject: `Resultado de examen de ciberseguridad: ${percentage}%`,
+      _template: "table",
+      _captcha: "false",
+      correo_del_participante: email,
+      aciertos: `${correct} de 5`,
+      errores: incorrect,
+      porcentaje: `${percentage}%`,
+      pregunta_1: `${responses.q1} — ${questionText.q1}`,
+      pregunta_2: `${responses.q2} — ${questionText.q2}`,
+      pregunta_3: `${responses.q3} — ${questionText.q3}`,
+      pregunta_4: `${responses.q4} — ${questionText.q4}`,
+      pregunta_5: `${responses.q5} — ${questionText.q5}`,
+      fecha_local: new Date().toLocaleString("es-MX")
+    };
+
+    let deliveryMessage = "El resultado se procesó correctamente.";
+    try {
+      const response = await fetch(formSubmitEndpoint, {
+        method: "POST",
+        headers: { "Content-Type": "application/json", "Accept": "application/json" },
+        body: JSON.stringify(payload)
+      });
+      const data = await response.json().catch(() => ({}));
+      if (!response.ok || data.success === "false") {
+        deliveryMessage = "La calificación se mostró, pero FormSubmit puede requerir confirmar primero el correo receptor.";
+      } else {
+        deliveryMessage = "El resultado también fue enviado mediante FormSubmit.";
+      }
+    } catch (error) {
+      deliveryMessage = "La calificación se mostró, pero no fue posible confirmar el envío por correo en este momento.";
+    }
+
+    document.getElementById("correctCount").textContent = correct;
+    document.getElementById("incorrectCount").textContent = incorrect;
+    document.getElementById("percentage").textContent = `${percentage}%`;
+    document.getElementById("resultIntro").textContent = `Resultado asociado al correo ${email}.`;
+    document.getElementById("details").innerHTML = detailHtml.join("");
+    document.getElementById("deliveryStatus").textContent = deliveryMessage;
+    document.getElementById("examScreen").classList.add("hidden");
+    document.getElementById("resultScreen").classList.remove("hidden");
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  });
+</script>
+</body>
+</html>
